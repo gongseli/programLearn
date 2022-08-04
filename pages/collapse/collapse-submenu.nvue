@@ -1,0 +1,166 @@
+<template>
+	<list class="menubar-list" :offset-accuracy="5" :bounce="false" isSwiperList="true">
+		<!--<refresh class="refresh" @refresh="onrefresh" @pullingdown="onpullingdown"
+			:display="refreshing ? 'show' : 'hide'">
+			<div class="refresh-view">
+				<text class="loading-text">{{refreshText}}</text>
+			</div>
+		</refresh>-->
+		<uni-section  ref="list">
+			<uni-collapse  accordion v-model="accordionVal" @change="change">
+				<uni-collapse-item  v-for="(item,index) in menuInfoList" :key="item.id" :title="item.name"
+				thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png">
+					<view class="subcontent" v-for="(item2, index2) in item.detail" @click="menu_onclick(index+'-'+index2)">
+						<view class="menubar-list-item">
+							<text>{{item2}}</text>
+						</view>
+					</view>
+				</uni-collapse-item>
+				<!--<uni-collapse-item title="手风琴效果"
+				thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png">
+					<view class="content">
+						<text class="text">手风琴效果同时只会保留一个组件的打开状态，其余组件会自动关闭。</text>
+					</view>
+				</uni-collapse-item>
+				<uni-collapse-item title="手风琴效果"
+				thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png">
+					<view class="content">
+						<text class="text">手风琴效果同时只会保留一个组件的打开状态，其余组件会自动关闭。</text>
+					</view>
+				</uni-collapse-item>-->
+			</uni-collapse>
+		</uni-section>
+	</list>
+</template>
+
+<script>
+	export default {
+		props: {
+			pid: {
+				type: [Number, String],
+				default: ''
+			},
+			parentId: {
+				type: String,
+				default: ''
+			}
+		},
+		data() {
+			return {
+				scrollable: true,
+				dataList: [],
+				refreshing: false,
+				refreshText: "",
+				refreshFlag: false,
+				
+				value:['0'],
+				accordionVal:'-1',
+				content: '折叠内容主体，可自定义内容及样式，点击按钮修改内容使高度发生变化。',
+				extraIcon: {
+					color: '#4cd964',
+					size: '26',
+					type: 'image'
+				},
+				menuInfoList : [],
+			}
+		},
+		created() {
+			console.log(this.$props.pid)
+			var secondMenuInfo = ["java语法","java变量类型"];
+			var thirdMenuInfo = [["条件语句","循环语句"],["类变量","局部变量","实例变量"]];
+			if (this.$props.pid == 1){
+				secondMenuInfo = ["java语法","java变量类型"];
+				thirdMenuInfo = [["条件语句","循环语句"],["类变量","局部变量","实例变量"]];
+			}
+			for (var i = 0; i < secondMenuInfo.length; i++) {
+				this.menuInfoList.push({
+					id:i,
+					name:secondMenuInfo[i],
+					detail:thirdMenuInfo[i]
+				});
+			}
+		},
+		methods: {
+			setScrollRef(height) {
+				if (this.$refs['list'].setSpecialEffects) {
+					this.$refs['list'].setSpecialEffects({
+						id: this.parentId,
+						headerHeight: height
+					});
+				}
+			},
+			menu_onclick(para1) {
+				console.log(para1)
+				uni.navigateTo({
+					url:'../materials/page',
+					animationType:'fade-in',
+					animationDuration:1000,
+					success:(res)=>{
+						console.log(res)
+					},
+					fail:(err)=>{
+						console.log(err)
+					}
+				})
+			},
+			onappear(){
+				console.log("appear")
+			},
+			loadData() {
+				console.log("loadData")
+				// 首次激活时被调用
+			},
+			clear() {
+				// 释放数据时被调用，参考 swiper-list 缓存配置
+				this.dataList.length = 0;
+			},
+			onrefresh(e) {
+				this.refreshing = true;
+				this.refreshText = "刷新中...";
+				setTimeout(() => {
+					this.refreshing = false;
+					this.refreshFlag = false;
+					this.refreshText = "已刷新";
+				}, 2000)
+			},
+			onpullingdown(e) {
+				if (this.refreshing) {
+					return;
+				}
+
+				this.pulling = false;
+				if (Math.abs(e.pullingDistance) > Math.abs(e.viewHeight)) {
+					this.refreshFlag = true;
+					this.refreshText = "释放立即刷新";
+				} else {
+					this.refreshFlag = false;
+					this.refreshText = "下拉可以刷新";
+				}
+			}
+		}
+	}
+</script>
+
+<style scoped>
+	.refresh-view {
+		width: 750rpx;
+		height: 80px;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.menubar-list {
+		flex: 1;
+		background-color: #ebebeb;
+	}
+
+	.menubar-list-item {
+		margin-left: 12px;
+		margin-right: 12px;
+		margin-top: 12px;
+		padding: 20px;
+		background-color: #aaa;
+		border-radius: 5px;
+	}
+</style>

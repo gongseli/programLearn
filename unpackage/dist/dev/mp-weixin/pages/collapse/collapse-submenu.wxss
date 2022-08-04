@@ -1,0 +1,54 @@
+
+view,
+label,
+swiper-item,
+scroll-view {
+  display:flex;
+  flex-direction:column;
+  flex-shrink: 0;
+  flex-grow: 0;
+  flex-basis: auto;
+  align-items: stretch;
+  align-content: flex-start;
+}
+view,
+image,
+input,
+scroll-view,
+swiper,
+swiper-item,
+text,
+textarea,
+video {
+  position: relative;
+  border: 0px solid #000000;
+  box-sizing: border-box;
+}
+swiper-item {
+  position: absolute;
+}
+button {
+  margin: 0;
+}
+
+
+.refresh-view.data-v-70b4b926 {
+	width: 750rpx;
+	height: 80px;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+.menubar-list.data-v-70b4b926 {
+	flex: 1;
+	background-color: #ebebeb;
+}
+.menubar-list-item.data-v-70b4b926 {
+	margin-left: 12px;
+	margin-right: 12px;
+	margin-top: 12px;
+	padding: 20px;
+	background-color: #aaa;
+	border-radius: 5px;
+}
+

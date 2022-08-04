@@ -1,0 +1,44 @@
+{
+  "pages": [
+	  {
+	      "path" : "pages/collapse/collapse-menu",
+	      "style" :                                                                                    
+	      {
+	          "navigationBarTitleText": "111",
+	          "enablePullDownRefresh": false
+	      }
+	      
+	  }
+	  ,
+    {
+      "path": "pages/collapse/collapse",
+      "style": {
+        "navigationBarTitleText": "学习目录"
+      }
+    }
+        ,{
+            "path" : "pages/collapse/collapse-submenu",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/materials/page",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  }
+}

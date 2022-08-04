@@ -1,0 +1,1 @@
+<view><block wx:for="{{pageData}}" wx:for-item="item2" wx:for-index="index2"><view class="subcontent"><block wx:if="{{item2.type=='1'}}"><view><text class="text">{{item2.content}}</text></view></block><block wx:else><block wx:if="{{item2.type=='2'}}"><view class="imgview"><image class="img _img" src="{{item2.url}}"></image></view></block></block></view></block></view>

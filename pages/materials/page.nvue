@@ -1,0 +1,64 @@
+<template>
+	<view>
+		<view class="subcontent" v-for="(item2, index2) in pageData" >
+			<view v-if="item2.type=='1'">
+				<text class="text">{{item2.content}}</text>
+			</view>
+			<view v-else-if="item2.type=='2'" class="imgview">
+				<img :src="item2.url" class="img"/>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				pageData : [],
+			}
+		},
+		created() {
+			
+			var info = {
+				"data":[
+					{content:"吃饭",type:"1",url:"www.baidu.com"},
+					{content:"睡觉",type:"2",url:"https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png"},
+					{content:"欺负晖晖",type:"1",url:"www.baidu.com"}
+				]
+			}
+			for (var i = 0; i < info.data.length; i++) {
+				console.log(info.data[i]);
+				this.pageData.push(info.data[i]);
+			}
+		},
+		methods: {
+			
+		}
+	}
+</script>
+
+<style>
+
+</style>
+
+<style lang="scss">
+	.text {
+		font-size: 20px;
+		padding: 50px;
+		color: #666;
+		line-height: 20px;
+		text-align: center;
+	}
+	.img {
+		padding: 15px;
+		height:80px;
+		width:100px;
+		background-position: center;
+	}
+	.imgview{
+		background-position: center;
+		text-align: center;
+	}
+</style>
+

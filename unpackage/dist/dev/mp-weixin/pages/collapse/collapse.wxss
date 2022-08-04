@@ -1,0 +1,31 @@
+@charset "UTF-8";
+/* 水平间距 */
+/* 水平间距 */
+.example-body {
+  flex-direction: column;
+  flex: 1;
+}
+.content {
+  padding: 15px;
+}
+.subcontent {
+  padding: 2px;
+}
+.text {
+  font-size: 14px;
+  color: #666;
+  line-height: 20px;
+}
+.button {
+  margin: 10px;
+  margin-bottom: 0;
+}
+.menubar-list-item {
+  margin-left: 12px;
+  margin-right: 12px;
+  margin-top: 0px;
+  padding: 20px;
+  background-color: #aaa;
+  border-radius: 2px;
+}
+

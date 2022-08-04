@@ -1,0 +1,1 @@
+<view class="uni-section"><view style="{{'padding:'+(padding?'10px':'')+';'}}"><slot></slot></view></view>
